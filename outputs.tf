@@ -18,14 +18,4 @@ output "db_name" {
   description = "Nome do Banco de Dados"
 }
 
-output "db_username" {
-  value       = var.db_username
-  description = "Usuário do Banco de Dados"
-}
-
-output "db_password" {
-  value       = var.db_password
-  description = "Senha do Banco de Dados"
-}
-
 
