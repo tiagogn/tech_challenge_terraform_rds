@@ -105,3 +105,4 @@ resource "aws_db_instance" "lanchonete_rds" {
   tags = {
     Name = "lanchonete-rds"
   }
+}
