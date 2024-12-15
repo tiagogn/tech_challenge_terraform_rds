@@ -1,0 +1,42 @@
+name: Deploy RDS with Terraform
+
+on:
+  pull_request:
+    branches:
+      - main   # Ou o nome da branch que você deseja usar para trigger
+  workflow_dispatch:   # Permite disparar manualmente o workflow
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout do repositório
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Configurar o Terraform
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: '1.10.1'  # Ajuste conforme a versão desejada
+
+    # Configurar credenciais da AWS
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws_region: us-east-1  # Ajuste conforme sua região
+
+    # Inicializar o Terraform
+    - name: Terraform Init
+      run: terraform init
+
+    # Validar o plano do Terraform
+    - name: Terraform Plan
+      run: terraform plan -out=tfplan
+
+    # Aplicar o plano do Terraform
+    - name: Terraform Apply
+      run: terraform apply -auto-approve tfplan
