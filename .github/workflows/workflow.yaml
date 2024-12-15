@@ -1,4 +1,4 @@
-name: Deploy RDS with Terraform
+name: Deploy RDS
 
 on:
   pull_request:
@@ -39,4 +39,8 @@ jobs:
 
     # Aplicar o plano do Terraform
     - name: Terraform Apply
-      run: terraform apply -auto-approve tfplan
+      env:
+        DB_USERNAME: ${{ secrets.DB_USERNAME }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      run: |
+        terraform apply -auto-approve tfplan

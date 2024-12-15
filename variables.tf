@@ -15,15 +15,3 @@ variable "db_name" {
   type        = string
   default     = "lanchonete"
 }
-
-variable "db_username" {
-  description = "Database Username"
-  type        = string
-  default     = "lanchonete_user"
-}
-
-variable "db_password" {
-  description = "Database Password"
-  type        = string
-  default     = "lanchonete_password"
-}

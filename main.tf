@@ -83,6 +83,10 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
 }
 
 # Instância RDS PostgreSQL
+
+variable "db_username" {}
+variable "db_password" {}
+
 resource "aws_db_instance" "lanchonete_rds" {
   allocated_storage      = 20
   engine                 = "postgres"
