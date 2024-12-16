@@ -42,4 +42,4 @@ jobs:
 
     # Aplicar o plano do Terraform
     - name: Terraform Apply
-      run: terraform apply -auto-approve tfplan -var="db_username=${{ secrets.DB_USERNAME }}" -var="db_password=${{ secrets.DB_PASSWORD }}"
+      run: terraform apply -auto-approve tfplan
