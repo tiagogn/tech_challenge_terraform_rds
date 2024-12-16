@@ -36,14 +36,10 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
-    # Validar o plano do Terraform
+      # Validar o plano do Terraform
     - name: Terraform Plan
-      run: terraform plan -out=tfplan
+      run: terraform plan -out=tfplan -var="db_username=${{ secrets.DB_USERNAME }}" -var="db_password=${{ secrets.DB_PASSWORD }}"
 
     # Aplicar o plano do Terraform
     - name: Terraform Apply
-      env:
-        DB_USERNAME: ${{ secrets.DB_USERNAME }}
-        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      run: |
-        terraform apply -auto-approve tfplan
+      run: terraform apply -auto-approve tfplan -var="db_username=${{ secrets.DB_USERNAME }}" -var="db_password=${{ secrets.DB_PASSWORD }}"
