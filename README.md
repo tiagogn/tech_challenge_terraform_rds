@@ -1,9 +1,8 @@
-# tech_challenge_terraform_rds
+# tech_chanllenge_terraform_rds
 
 1. Fazer o download e instalção do AWS CLI https://aws.amazon.com/pt/cli/
 
-2. Fazer o download do terraform: https://www.terraform.io/
-
+2. Fazer o download e instalação do terraform: https://www.terraform.io/
 3. Criar o usuário no AWS IAM
 
 3. Inserir as credencias no arquivo terraform.tfvars
