@@ -1,6 +1,8 @@
 # Provedor AWS
 provider "aws" {
   region     = var.region
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
 }
 
 # Criar VPC
@@ -84,10 +86,7 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
 
 # Instância RDS PostgreSQL
 
-variable "db_username" {}
-variable "db_password" {}
-
-resource "aws_db_instance" "lanchonete_rds" {
+resource "aws_db_instance" "lanchonete_pedido_rds" {
   allocated_storage      = 20
   engine                 = "postgres"
   engine_version         = "16.3"
@@ -103,6 +102,6 @@ resource "aws_db_instance" "lanchonete_rds" {
   db_subnet_group_name   = aws_db_subnet_group.rds_subnet_group.name
 
   tags = {
-    Name = "lanchonete-rds"
+    Name = "lanchonete-pedido-rds"
   }
 }

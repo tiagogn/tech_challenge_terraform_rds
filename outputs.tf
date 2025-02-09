@@ -9,7 +9,7 @@ output "public_subnets" {
 }
 
 output "rds_endpoint" {
-  value       = aws_db_instance.lanchonete_rds.endpoint
+  value       = aws_db_instance.lanchonete_pedido_rds.endpoint
   description = "Endpoint do RDS"
 }
 
