@@ -13,18 +13,18 @@ output "rds_endpoint" {
   description = "Endpoint do RDS"
 }
 
-output "db_name" {
-  value       = var.db_name
+output "db_name_pedido" {
+  value       = var.db_name_pedido
   description = "Nome do Banco de Dados"
 }
 
-output "db_username" {
-  value       = var.db_username
+output "db_username_pedido" {
+  value       = var.db_username_pedido
   description = "Usuário do Banco de Dados"
 }
 
-output "db_password" {
-  value       = var.db_password
+output "db_password_pedido" {
+  value       = var.db_password_pedido
   description = "Senha do Banco de Dados"
 }
 

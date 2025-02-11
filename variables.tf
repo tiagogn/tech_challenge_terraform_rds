@@ -20,20 +20,38 @@ variable "vpc_cidr_block" {
   default     = "10.0.0.0/16"
 }
 
-variable "db_name" {
+variable "db_name_pedido" {
   description = "Database Name"
   type        = string
-  default     = "lanchonete"
+  default     = "lanchonetepedido"
 }
 
-variable "db_username" {
+variable "db_username_pedido" {
   description = "Database Username"
   type        = string
-  default     = "lanchonete_user"
+  default     = "lanchonete_pedido_user"
 }
 
-variable "db_password" {
+variable "db_password_pedido" {
   description = "Database Password"
   type        = string
-  default     = "lanchonete_password"
+  default     = "lanchonete_pedido_password"
+}
+
+variable "db_name_produto" {
+  description = "Database Name"
+  type        = string
+  default     = "lanchoneteproduto"
+}
+
+variable "db_username_produto" {
+  description = "Database Username"
+  type        = string
+  default     = "lanchonete_produto_user"
+}
+
+variable "db_password_produto" {
+  description = "Database Password"
+  type        = string
+  default     = "lanchonete_produto_password"
 }

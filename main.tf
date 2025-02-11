@@ -84,16 +84,16 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
   subnet_ids  = aws_subnet.public[*].id
 }
 
-# Instância RDS PostgreSQL
+# Instância RDS PostgreSQL Pedido
 
 resource "aws_db_instance" "lanchonete_pedido_rds" {
   allocated_storage      = 20
   engine                 = "postgres"
   engine_version         = "16.3"
   instance_class         = "db.t3.micro"
-  db_name                = var.db_name
-  username               = var.db_username
-  password               = var.db_password
+  db_name                = var.db_name_pedido
+  username               = var.db_username_pedido
+  password               = var.db_password_pedido
   parameter_group_name   = "default.postgres16"
   publicly_accessible    = false
   skip_final_snapshot    = true
@@ -103,5 +103,27 @@ resource "aws_db_instance" "lanchonete_pedido_rds" {
 
   tags = {
     Name = "lanchonete-pedido-rds"
+  }
+}
+
+# Instância RDS PostgreSQL Produto
+
+resource "aws_db_instance" "lanchonete_produto_rds" {
+  allocated_storage      = 20
+  engine                 = "postgres"
+  engine_version         = "16.3"
+  instance_class         = "db.t3.micro"
+  db_name                = var.db_name_produto
+  username               = var.db_username_produto
+  password               = var.db_password_produto
+  parameter_group_name   = "default.postgres16"
+  publicly_accessible    = false
+  skip_final_snapshot    = true
+
+  vpc_security_group_ids = [aws_security_group.rds_sg.id]
+  db_subnet_group_name   = aws_db_subnet_group.rds_subnet_group.name
+
+  tags = {
+    Name = "lanchonete-produto-rds"
   }
 }
