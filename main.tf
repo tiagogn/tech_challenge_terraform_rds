@@ -85,6 +85,8 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
 }
 
 # Instância RDS PostgreSQL Pedido
+variable "db_username_pedido" {}
+variable "db_password_pedido" {}
 
 resource "aws_db_instance" "lanchonete_pedido_rds" {
   allocated_storage      = 20
@@ -107,6 +109,8 @@ resource "aws_db_instance" "lanchonete_pedido_rds" {
 }
 
 # Instância RDS PostgreSQL Produto
+variable "db_username_produto" {}
+variable "db_password_produto" {}
 
 resource "aws_db_instance" "lanchonete_produto_rds" {
   allocated_storage      = 20
