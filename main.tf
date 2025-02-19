@@ -1,6 +1,8 @@
 # Provedor AWS
 provider "aws" {
   region     = var.region
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
 }
 
 # Criar VPC
@@ -82,19 +84,18 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
   subnet_ids  = aws_subnet.public[*].id
 }
 
-# Instância RDS PostgreSQL
+# Instância RDS PostgreSQL Pedido
+variable "db_username_pedido" {}
+variable "db_password_pedido" {}
 
-variable "db_username" {}
-variable "db_password" {}
-
-resource "aws_db_instance" "lanchonete_rds" {
+resource "aws_db_instance" "lanchonete_pedido_rds" {
   allocated_storage      = 20
   engine                 = "postgres"
   engine_version         = "16.3"
   instance_class         = "db.t3.micro"
-  db_name                = var.db_name
-  username               = var.db_username
-  password               = var.db_password
+  db_name                = var.db_name_pedido
+  username               = var.db_username_pedido
+  password               = var.db_password_pedido
   parameter_group_name   = "default.postgres16"
   publicly_accessible    = false
   skip_final_snapshot    = true
@@ -103,6 +104,30 @@ resource "aws_db_instance" "lanchonete_rds" {
   db_subnet_group_name   = aws_db_subnet_group.rds_subnet_group.name
 
   tags = {
-    Name = "lanchonete-rds"
+    Name = "lanchonete-pedido-rds"
+  }
+}
+
+# Instância RDS PostgreSQL Produto
+variable "db_username_produto" {}
+variable "db_password_produto" {}
+
+resource "aws_db_instance" "lanchonete_produto_rds" {
+  allocated_storage      = 20
+  engine                 = "postgres"
+  engine_version         = "16.3"
+  instance_class         = "db.t3.micro"
+  db_name                = var.db_name_produto
+  username               = var.db_username_produto
+  password               = var.db_password_produto
+  parameter_group_name   = "default.postgres16"
+  publicly_accessible    = false
+  skip_final_snapshot    = true
+
+  vpc_security_group_ids = [aws_security_group.rds_sg.id]
+  db_subnet_group_name   = aws_db_subnet_group.rds_subnet_group.name
+
+  tags = {
+    Name = "lanchonete-produto-rds"
   }
 }
