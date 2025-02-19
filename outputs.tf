@@ -28,4 +28,20 @@ output "db_password_pedido" {
   description = "Senha do Banco de Dados"
 }
 
+output "db_name_produto" {
+  value       = var.db_name_produto
+  description = "Nome do Banco de Dados"
+}
+
+output "db_username_produto" {
+  value       = var.db_username_produto
+  description = "Usuário do Banco de Dados"
+}
+
+output "db_password_produto" {
+  value       = var.db_password_produto
+  description = "Senha do Banco de Dados"
+}
+
+
 
